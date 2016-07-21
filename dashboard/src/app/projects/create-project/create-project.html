@@ -177,7 +177,9 @@
             <div ng-message="uniqueWorkspaceName">This workspace name is already used.</div>
           </che-input>
         </che-label-container>
-        <che-workspace-ram-allocation-slider ng-model="createProjectCtrl.workspaceRam"></che-workspace-ram-allocation-slider>
+        <che-label-container che-label-name="RAM">
+          <che-workspace-ram-allocation-slider ng-model="createProjectCtrl.workspaceRam"></che-workspace-ram-allocation-slider>
+        </che-label-container>
 
       </ng-form>
     </che-panel>

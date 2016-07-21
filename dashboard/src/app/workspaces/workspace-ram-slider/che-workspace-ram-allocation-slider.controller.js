@@ -14,22 +14,25 @@
  * Controller for the Workspace Ram slider
  * @author Florent Benoit
  */
-export class CheWorkspaceRamAllocationSliderCtrl {
+export class CheWorkspaceRamAllocationSliderController {
 
   /**
    * Default constructor that is using resource
    * @ngInject for Dependency injection
    */
-  constructor ($scope) {
+  constructor ($timeout) {
     "ngInject";
-
-    $scope.$watch(() => {return this.inputVal;}, (newVal, oldVal) => {
-      if (!newVal || newVal===oldVal) {
-        // do not change ngModel if input contains incorrect value
-        return;
-      }
-      this.ngModel = newVal * 1000;
-    });
+    this.$timeout = $timeout;
   }
 
+  onChange() {
+    if (!this.inputVal) {
+      return;
+    }
+    this.ngModel = this.inputVal * 1000;
+
+    this.$timeout(() => {
+      this.cheOnChange();
+    });
+  }
 }
