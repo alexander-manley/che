@@ -21,13 +21,14 @@ export class ProjectDetailsController {
    * Default constructor that is using resource injection
    * @ngInject for Dependency injection
    */
-  constructor($log, $route, $location, cheAPI, $mdDialog, cheNotification, lodash) {
+  constructor($log, $route, $location, cheAPI, $mdDialog, cheNotification, lodash, $timeout) {
     this.$log = $log;
     this.cheNotification = cheNotification;
     this.cheAPI = cheAPI;
     this.$mdDialog = $mdDialog;
     this.$location = $location;
     this.lodash = lodash;
+    this.$timeout = $timeout;
 
     this.namespace = $route.current.params.namespace;
     this.workspaceName = $route.current.params.workspaceName;
@@ -147,10 +148,18 @@ export class ProjectDetailsController {
   }
 
   updateInfo(isInputFormValid) {
+    this.$timeout.cancel(this.timeoutPromise);
+
     if (!isInputFormValid || !(this.isNameChanged() || this.isDescriptionChanged())) {
       return;
     }
 
+    this.timeoutPromise = this.$timeout(() => {
+      this.doUpdateInfo();
+    }, 2000);
+  }
+
+  doUpdateInfo() {
     if (this.isNameChanged()) {
       let promise = this.projectService.rename(this.projectName, this.projectDetails.name);
 
