@@ -158,24 +158,26 @@
       <ng-form name="workspaceInformationForm">
 
         <che-label-container che-label-name="Name">
-          <che-input che-form="workspaceInformationForm"
-                     che-name="name"
-                     che-label-name=""
-                     che-place-holder="Name of the workspace"
-                     ng-model="createProjectCtrl.workspaceName"
-                     required
-                     unique-workspace-name="createProjectCtrl.workspaceName"
-                     ng-minlength="3"
-                     ng-maxlength="20"
-                     ng-pattern="/^[A-Za-z0-9_\-\.]+$/">
-            <div ng-message="required">A name is required.</div>
-            <div ng-message="pattern">Workspace name may contain digits, latin letters, _ , . , - and should start only with digits, latin
-              letters or underscores
-            </div>
-            <div ng-message="minlength">The name has to be more then 3 characters long.</div>
-            <div ng-message="maxlength">The name has to be less than 20 characters long.</div>
-            <div ng-message="uniqueWorkspaceName">This workspace name is already used.</div>
-          </che-input>
+          <div class="create-project-input">
+            <che-input che-form="workspaceInformationForm"
+                       che-name="name"
+                       che-label-name=""
+                       che-place-holder="Name of the workspace"
+                       ng-model="createProjectCtrl.workspaceName"
+                       required
+                       unique-workspace-name="createProjectCtrl.workspaceName"
+                       ng-minlength="3"
+                       ng-maxlength="20"
+                       ng-pattern="/^[A-Za-z0-9_\-\.]+$/">
+              <div ng-message="required">A name is required.</div>
+              <div ng-message="pattern">Workspace name may contain digits, latin letters, _ , . , - and should start only with digits, latin
+                letters or underscores
+              </div>
+              <div ng-message="minlength">The name has to be more then 3 characters long.</div>
+              <div ng-message="maxlength">The name has to be less than 20 characters long.</div>
+              <div ng-message="uniqueWorkspaceName">This workspace name is already used.</div>
+            </che-input>
+          </div>
         </che-label-container>
         <che-label-container che-label-name="RAM">
           <che-workspace-ram-allocation-slider ng-model="createProjectCtrl.workspaceRam"></che-workspace-ram-allocation-slider>
@@ -199,32 +201,38 @@
       <che-panel che-title="Project Metadata" id="create-project-source-information"
                  ng-init="createProjectCtrl.setProjectInformationForm(projectInformationForm);">
 
-        <che-input che-form="projectInformationForm"
-                   che-name="name"
-                   che-label-name="Name"
-                   che-place-holder="Name of the project"
-                   ng-model="createProjectCtrl.projectName"
-                   required
-                   unique-project-name="createProjectCtrl.getWorkspaceProjects()"
-                   ng-maxlength="128"
-                   ng-pattern="/^[A-Za-z0-9_\-\.]+$/">
-          <div ng-message="required">A name is required.</div>
-          <div ng-message="uniqueProjectName">This project name is already used.</div>
-          <div ng-message="pattern">The name should not contain special characters like space, dollar, etc.</div>
-          <div ng-message="maxlength">The name has to be less than 128 characters long.</div>
-          <div ng-message="md-maxlength">The name has to be less than 128 characters long.</div>
-        </che-input>
-        <div ng-show="createProjectCtrl.importProjectData.project.type && createProjectCtrl.importProjectData.project.type.length > 0">
-          <che-input che-form="projectInformationForm"
-                     che-name="description"
-                     che-label-name="Description"
-                     che-place-holder="Description of the project"
-                     ng-model="createProjectCtrl.projectDescription"
-                     ng-maxlength="256">
-            <div ng-message="maxlength">The name has to be less than 256 characters long.</div>
-            <div ng-message="md-maxlength">The name has to be less than 256 characters long.</div>
-          </che-input>
-        </div>
+        <che-label-container che-label-name="Name">
+          <div class="create-project-input">
+            <che-input che-form="projectInformationForm"
+                       che-name="name"
+                       che-place-holder="Name of the project"
+                       ng-model="createProjectCtrl.projectName"
+                       required
+                       unique-project-name="createProjectCtrl.getWorkspaceProjects()"
+                       ng-maxlength="128"
+                       ng-pattern="/^[A-Za-z0-9_\-\.]+$/">
+              <div ng-message="required">A name is required.</div>
+              <div ng-message="uniqueProjectName">This project name is already used.</div>
+              <div ng-message="pattern">The name should not contain special characters like space, dollar, etc.</div>
+              <div ng-message="maxlength">The name has to be less than 128 characters long.</div>
+              <div ng-message="md-maxlength">The name has to be less than 128 characters long.</div>
+            </che-input>
+          </div>
+        </che-label-container>
+        <che-label-container che-label-name="Description"
+                             ng-if="createProjectCtrl.importProjectData.project.type && createProjectCtrl.importProjectData.project.type.length > 0">
+          <div class="create-project-input">
+            <che-input che-form="projectInformationForm"
+                       che-name="description"
+                       che-place-holder="Description of the project"
+                       che-width="auto"
+                       ng-model="createProjectCtrl.projectDescription"
+                       ng-maxlength="256">
+              <div ng-message="maxlength">The name has to be less than 256 characters long.</div>
+              <div ng-message="md-maxlength">The name has to be less than 256 characters long.</div>
+            </che-input>
+          </div>
+        </che-label-container>
 
       </che-panel>
     </ng-form>
