@@ -8,15 +8,18 @@
           <div layout="row" layout-wrap>
             <div ng-if="workspaceRecipeCtrl.selectSourceOption === 'upload-custom-stack'" class="recipe-url">
               <che-label-container che-label-name="Recipe URL">
-                <che-input che-form="workspaceInformationForm"
-                            che-name="url"
-                            che-place-holder="URL of the Recipe"
-                            che-pattern="(^((ftp|http|https)://[\w@.\-\_]+(:\d{1,5})?(/[\w#!:.?+=&%@!\_\-/]+)*){1}$)"
-                            ng-model="workspaceRecipeCtrl.recipeUrl"
-                            ng-maxlength="255">
-                  <div ng-message="maxlength">The name has to be less than 255 characters long.</div>
-                  <div ng-message="pattern">URL is not valid.</div>
-                </che-input>
+                <div class="recipe-url-input">
+                  <che-input che-form="workspaceInformationForm"
+                             che-name="url"
+                             che-place-holder="URL of the Recipe"
+                             che-pattern="(^((ftp|http|https)://[\w@.\-\_]+(:\d{1,5})?(/[\w#!:.?+=&%@!\_\-/]+)*){1}$)"
+                             che-width="auto"
+                             ng-model="workspaceRecipeCtrl.recipeUrl"
+                             ng-maxlength="255">
+                    <div ng-message="maxlength">The name has to be less than 255 characters long.</div>
+                    <div ng-message="pattern">URL is not valid.</div>
+                  </che-input>
+                </div>
               </che-label-container>
             </div>
           </div>
