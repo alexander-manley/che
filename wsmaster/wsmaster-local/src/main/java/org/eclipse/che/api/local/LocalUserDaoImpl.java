@@ -47,7 +47,6 @@ import static java.util.Objects.requireNonNull;
  * @author Anton Korneta
  * @author Yevhenii Voevodin
  */
-@Singleton
 public class LocalUserDaoImpl implements UserDao {
 
     public static final String FILENAME = "users.json";
