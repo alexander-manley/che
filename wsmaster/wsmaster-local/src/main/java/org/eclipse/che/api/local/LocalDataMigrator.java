@@ -175,6 +175,12 @@ public class LocalDataMigrator {
         return migrated;
     }
 
+    /**
+     * The base class for all migrations.
+     *
+     * @param <T>
+     *         the type of the entities migrated by this migration
+     */
     public static abstract class Migration<T> {
         protected final String       entityName;
         protected final LocalStorage storage;
